@@ -50,4 +50,9 @@ public class ThymeleafController {
 //		반환값으로 뷰 이름을 설정
 		return "useThymeleaf";
 	}
+	
+	@GetMapping("a")
+	public String showA() {
+		return "pageA";
+	}
 }
