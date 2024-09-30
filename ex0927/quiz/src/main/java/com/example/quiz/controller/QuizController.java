@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.quiz.entity.Quiz;
@@ -75,7 +76,7 @@ public class QuizController {
 	
 //	** Quiz 데이터를 1건 취득해서 폼 안에 표시
 	@GetMapping("/{id}")
-	public String showUpdate(QuizForm quizForm, @PathVariable Integer id, Model model) {
+	public String showUpdate(QuizForm quizForm, @PathVariable("id") Integer id, Model model) {
 //		Quiz를 취득(Optional로 래핑)
 		Optional<Quiz> quizOpt = service.selectOneById(id);
 		
@@ -141,10 +142,45 @@ public class QuizController {
 		return from;
 	}
 	
-	public String postMethodName(@RequestBody String entity) {
-		//TODO: process POST request
-		
-		return entity;
+//	id를 키로 사용해 데이터를 삭제
+	@PostMapping("/delete")
+	public String delete(@RequestParam("id") String id, Model model, RedirectAttributes redirectAttributes) {
+//		퀴즈 정보를 1건 삭제하고 리다이렉트
+		service.deleteQuizById(Integer.parseInt(id));
+		redirectAttributes.addFlashAttribute("delcomplete", "삭제 완료했습니다");
+		return "redirect:/quiz";
 	}
 	
+//	Quiz 데이터를 랜덤으로 한 건 가져와 하면에 표시
+	@GetMapping("/play")
+	public String showQuiz(QuizForm quizForm, Model model) {
+//		Quiz 정보 취득(Optional으로 래핑)
+		Optional<Quiz> quizOpt = service.selectOneRandomQuiz();
+		
+//		값이 있는지 확인
+		if (quizOpt.isPresent()) {
+//			QuizForm으로 채우기
+			Optional<QuizForm> quizFormOpt = quizOpt.map(t -> makeQuizForm(t));
+			quizForm = quizFormOpt.get();
+		} else {
+			model.addAttribute("msg", "등록된 문제가 없습니다");
+			return "play";
+		}
+		
+//		표시용 모델에 저장
+		model.addAttribute("quizForm", quizForm);
+		
+		return "play";
+	}
+	
+//	퀴즈 정답/오답 판단
+	@PostMapping("/check")
+	public String checkQuiz(QuizForm quizForm, @RequestParam("answer") Boolean answer, Model model) {
+		if (service.checkQuiz(quizForm.getId(), answer)) {
+			model.addAttribute("msg", "정답입니다.");
+		} else {
+			model.addAttribute("msg", "오답입니다.");
+		}
+		return "answer";
+	}
 }

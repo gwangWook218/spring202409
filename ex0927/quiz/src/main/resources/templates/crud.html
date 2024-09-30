@@ -17,8 +17,8 @@
     <br>
     <div th:if="${#fields.hasErrors('question')}" th:errors="*{question}" style="color: red;"></div>
     <label>퀴즈 정답: </label><br>
-    <input type="radio" value="true" thLfield="*{answer}">O
-    <input type="radio" value="false" thLfield="*{answer}">X
+    <input type="radio" value="true" th:field="*{answer}">O
+    <input type="radio" value="false" th:field="*{answer}">X
     <br>
     <div th:if="${#fields.hasErrors('answer')}" th:errors="*{answer}" style="color: red;"></div>
     <label>작성자: </label><br>
