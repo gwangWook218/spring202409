@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오디션 참가 등록</title>
+  <!-- css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <!-- favicon 오류 해결: 공백 icon -->
+  <link rel="shortcut icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="main">
+    <!-- 페이지 상단 메뉴 -->
+    <div th:insert="~{./header :: header}"></div>
+
+    <section>
+      <h1>오디션 등록</h1>
+    </section>
+    <save>
+      <form action="/save" method="post" name="frm" onsubmit="return checkForm()" onreset="return resetForm()">
+        <table>
+          <tr>
+            <td>참가번호</td>
+            <td><input type="text" name="artist_id"></td>
+          </tr>
+          <tr>
+            <td>참가자명</td>
+            <td><input type="text" name="artist_name"></td>
+          </tr>
+          <tr>
+            <td>생년월일</td>
+            <td><input type="text" name="artist_birth"></td>
+          </tr>
+          <tr>
+            <td>성별 (남성M, 여성F)</td>
+            <td>
+              <input type="radio" name="artist_gender" value="M">남성
+              <input type="radio" name="artist_gender" value="F">여성
+            </td>
+          </tr>
+          <tr>
+            <td>특기 (1.보컬 2.댄스 3.랩)</td>
+            <td>
+              <select name="talent" id="talent">
+                <option value="none" selected disabled>특기선택</option>
+                <option value="1">보컬</option>
+                <option value="2">댄스</option>
+                <option value="3">랩</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>소속사</td>
+            <td><input type="text" name="agency"></td>
+          </tr>
+          <tr>
+            <td>
+              <input type="submit" value="오디션 등록">
+              <input type="reset" value="다시 쓰기">
+            </td>
+          </tr>
+        </table>
+      </form>
+    </save>
+
+    <!-- 페이지 하단 메뉴 -->
+    <div th:insert="~{./footer :: footer}"></div>
+  </div>
+</body>
+<script type="text/javascript">
+  const d = document;
+  const checkForm = () => {
+    if (d.frm.artist_id.value.trim()=="") {
+      alert("참가번호가 입력되지 않았습니다.");
+      d.frm.artist_id.focus();
+      return false;
+    }
+    if (d.frm.artist_name.value.trim()=="") {
+      alert("참가자명이 입력되지 않았습니다.");
+      d.frm.artist_name.focus();
+      return false;
+    }
+    alert("오디션 등록이 완료되었습니다.");
+    return true;
+  }
+  const resetForm = () => {
+    alert("전체 내용을 지우고 다시 입력합니다.");
+    d.frm.reset();
+    d.frm.artist_id.focus();
+  }
+</script>
+</html>

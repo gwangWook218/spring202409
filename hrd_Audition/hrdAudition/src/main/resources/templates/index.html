@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HOME</title>
+  <!-- css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <!-- favicon 오류 해결: 공백 icon -->
+  <link rel="shortcut icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="main">
+    <!-- 페이지 상단 메뉴 -->
+    <div th:insert="~{./header :: header}"></div>
+
+    <section>
+      <h1>참가자 목록 조회</h1>
+    </section>
+    <!-- 참가자 목록 조회 -->
+    <div th:insert="~{./list :: list}"></div>
+
+    <!-- 페이지 하단 메뉴 -->
+    <div th:insert="~{./footer :: footer}"></div>
+  </div>
+</body>
+</html>

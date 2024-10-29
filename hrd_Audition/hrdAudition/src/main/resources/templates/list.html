@@ -1,0 +1,20 @@
+<list>
+  <table>
+    <tr>
+      <th>참가번호</th>
+      <th>참가자명</th>
+      <th>생년월일</th>
+      <th>성별</th>
+      <th>특기</th>
+      <th>소속사</th>
+    </tr>
+    <tr th:each="artist: ${artistList}">
+      <td><a th:text="${artist.artist_id}" th:href="@{|/${artist.artist_id}|}"></a></td>
+      <td th:text="${artist.artist_name}"></td>
+      <td th:text="${artist.artist_birth}"></td>
+      <td th:text="${artist.artist_gender}"></td>
+      <td th:text="${artist.talent}"></td>
+      <td th:text="${artist.agency}"></td>
+    </tr>
+  </table>
+</list>

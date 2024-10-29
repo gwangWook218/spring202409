@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+        
+<!-- 순서3. 마이바티스 컨피그 설정 -->
+<configuration>
+
+	<!--mybatis에 로깅연결하여 consol에서 sql을 확인해 본다.-->
+	<settings>
+		<setting name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"/>
+	</settings>
+	
+</configuration>

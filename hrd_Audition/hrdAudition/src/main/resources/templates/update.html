@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>참가자 정보 수정</title>
+  <!-- css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <!-- favicon 오류 해결: 공백 icon -->
+  <link rel="shortcut icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="main">
+    <!-- 페이지 상단 메뉴 -->
+    <div th:insert="~{./header :: header}"></div>
+
+    <section>
+      <h1>참가자 정보 수정</h1>
+    </section>
+    
+    <form th:action="@{|/update/${artist.artist_id}|}" method="post" name="updateForm">
+      <input type="hidden" name="artist_id" th:value="${artist.artist_id}">
+      <table>
+        <tr>
+          <td>참가자명</td>
+          <td><input type="text" name="artist_name" th:value="${artist.artist_name}"></td>
+        </tr>
+        <tr>
+          <td>생년월일</td>
+          <td><input type="text" name="artist_birth" th:value="${artist.artist_birth}"></td>
+        </tr>
+        <tr>
+          <td>성별</td>
+          <td><input type="text" name="artist_gender" th:value="${artist.artist_gender}"></td>
+        </tr>
+        <tr>
+          <td>특기</td>
+          <td><input type="text" name="talent" th:value="${artist.talent}"></td>
+        </tr>
+        <tr>
+          <td>소속사</td>
+          <td><input type="text" name="agency" th:value="${artist.agency}"></td>
+        </tr>
+        <tr>
+          <td><input type="button" value="수정" onclick="submit()"></td>
+        </tr>
+      </table>
+    </form>
+
+    <!-- 페이지 하단 메뉴 -->
+    <div th:insert="~{./footer :: footer}"></div>
+  </div>
+</body>
+</html>

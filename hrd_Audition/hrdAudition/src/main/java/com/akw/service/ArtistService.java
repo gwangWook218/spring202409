@@ -16,7 +16,7 @@ public class ArtistService {
 
 	private final ArtistRepository artistRepository;
 	
-	public void insert(ArtistDTO artistDTO) {
+	public void insertOne(ArtistDTO artistDTO) {
 		artistRepository.insertOne(artistDTO);
 	}
 	
