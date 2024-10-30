@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>참가자 등수 조회</title>
+  <!-- css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <!-- favicon 오류 해결: 공백 icon -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="main">
+    <!-- 페이지 상단 메뉴 -->
+    <div th:insert="~{./header :: header}"></div>
+
+    <section>
+      <h1>참가자 등수 조회</h1>
+    </section>
+    <!-- 참가자 등수 조회 -->
+    <table>
+      <tr>
+        <th>참가번호</th>
+        <th>참가자명</th>
+        <th>점수</th>
+        <th>평균</th>
+        <th>순위</th>
+      </tr>
+      <tr th:each="rank: ${rankList}">
+        <td th:text="${rank.artist_id}"></td>
+        <td th:text="${rank.artist_name}"></td>
+        <td th:text="${rank.sum_point}"></td>
+        <td th:text="${rank.avg_point}"></td>
+        <td th:text="${rank.rank}"></td>
+      </tr>
+    </table>
+    <!-- 페이지 하단 메뉴 -->
+    <div th:insert="~{./footer :: footer}"></div>
+  </div>
+</body>
+</html>

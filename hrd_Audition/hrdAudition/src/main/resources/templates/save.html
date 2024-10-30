@@ -7,7 +7,7 @@
   <!-- css -->
   <link rel="stylesheet" th:href="@{/css/style.css}">
   <!-- favicon 오류 해결: 공백 icon -->
-  <link rel="shortcut icon" href="data:;base64,iVBORw0KGgo=">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 </head>
 <body>
   <div class="main">
@@ -36,7 +36,7 @@
             <td>성별 (남성M, 여성F)</td>
             <td>
               <input type="radio" name="artist_gender" value="M">남성
-              <input type="radio" name="artist_gender" value="F">여성
+              <input type="radio" name="gender" value="F">여성
             </td>
           </tr>
           <tr>
@@ -55,7 +55,7 @@
             <td><input type="text" name="agency"></td>
           </tr>
           <tr>
-            <td>
+            <td colspan="2">
               <input type="submit" value="오디션 등록">
               <input type="reset" value="다시 쓰기">
             </td>
