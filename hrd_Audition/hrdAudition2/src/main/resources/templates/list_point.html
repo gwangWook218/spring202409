@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>멘토 점수 조회</title>
+  <!-- css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <!-- favicon 오류 해결: 공백 icon -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="main">
+    <!-- 페이지 상단 메뉴 -->
+    <div th:insert="~{./header :: header}"></div>
+
+    <section>
+      <h1>참가자 목록 조회</h1>
+    </section>
+
+    <!-- 멘토 점수 조회 -->
+    <table>
+      <tr>
+        <td>참가번호</td>
+        <td>참가자명</td>
+        <td>생년월일</td>
+        <td>점수</td>
+        <td>등급</td>
+        <td>멘토</td>
+      </tr>
+      <tr th:each="point: ${pointList}">
+        <td th:text="${point.artist_id}"></td>
+        <td th:text="${point.artist_name}"></td>
+        <td th:text="${point.artist_birth}"></td>
+        <td th:text="${point.point}"></td>
+        <td th:text="${point.grade}"></td>
+        <td th:text="${point.mento_name}"></td>
+      </tr>
+    </table>
+
+    <!-- 페이지 하단 메뉴 -->
+    <div th:insert="~{./footer :: footer}"></div>
+  </div>
+</body>
+</html>

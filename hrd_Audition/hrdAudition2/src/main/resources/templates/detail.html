@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>참가자 정보 상세보기</title>
+  <!-- css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <!-- favicon 오류 해결: 공백 icon -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="main">
+    <!-- 페이지 상단 메뉴 -->
+    <div th:insert="~{./header :: header}"></div>
+
+    <section>
+      <h1>참가자 정보 상세보기</h1>
+    </section>
+
+    <table>
+      <tr>
+        <th>참가번호</th>
+        <td th:text="${artist.artist_id}"></td>
+      </tr>
+      <tr>
+        <th>참가자명</th>
+        <td th:text="${artist.artist_name}"></td>
+      </tr>
+      <tr>
+        <th>생년월일</th>
+        <td th:text="${artist.artist_birth}"></td>
+      </tr>
+      <tr>
+        <th>성별</th>
+        <td th:text="${artist.artist_gender}"></td>
+      </tr>
+      <tr>
+        <th>특기</th>
+        <td th:text="${artist.talent}"></td>
+      </tr>
+      <tr>
+        <th>소속사</th>
+        <td th:text="${artist.agency}"></td>
+      </tr>
+    </table>
+    <!-- <button onclick="listReq()">목록</button> -->
+    <button onclick="updateReq()">수정 화면으로 이동</button>
+    <button onclick="deleteReq()">삭제하기</button>
+
+    <!-- 페이지 하단 메뉴 -->
+    <div th:insert="~{./footer :: footer}"></div>
+  </div>
+</body>
+<script th:inline="javascript">
+  const listReq = () => {
+    location.href = "/index";
+  }
+  const updateReq = () => {
+    location.href = `/update/[[${artist.artist_id}]]`;
+  }
+  const deleteReq = () => {
+    location.href = `/delete/[[${artist.artist_id}]]`;
+  }
+</script>
+</html>

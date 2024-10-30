@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- 전체root 로그는 INFO레벨까지만 확인하도록 설정 -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+ 
+    <!-- 콘솔에 출력되는 로그를 보여주게되는 포맷모양~~을 설정 -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss}~~ %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+ 
+    <!-- MyBatis의 쿼리가 실행될때  SQL구문을 로그에 출력하도록 설정 
+         DEBUG레벨까지 확인-->
+    <logger name="org.apache.ibatis.logging" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+    <logger name="org.mybatis" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE" />
+    </logger>
+</configuration>
