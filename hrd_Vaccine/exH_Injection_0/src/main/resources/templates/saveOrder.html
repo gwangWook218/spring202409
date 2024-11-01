@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>접종 등록 화면</title>
+  <!-- css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <!-- favicon 오류해결: 공백 icon -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="main">
+    <!-- 페이지 상단 및 메뉴 -->
+    <div th:insert="~{./header :: header}"></div>
+
+    <section>
+      <h1>접종 등록 화면</h1>
+    </section>
+
+    <save>
+      <form action="/saveOrder" method="post" name="frm"
+        onsubmit="return checkForm()" onreset="return resetForm()">
+        <table>
+          <tr>
+            <td>접종받은코드</td>
+            <td><input type="number" name="p_seno" /></td>
+          </tr>
+          <tr>
+            <td>백신 코드[A001,A002]</td>
+            <td><input type="text" name="i_code" /></td>
+          </tr>
+          <tr>
+            <td>회원 코드</td>
+            <td><input type="text" name="p_no" /></td>
+          </tr>
+          <tr>
+            <td>접종 날짜</td>
+            <td><input type="date" name="p_date" /></td>
+          </tr>
+                  <tr>
+            <td colspan="2"><input type="submit" value="등록" /> <input
+              type="reset" value="다시쓰기" /></td>
+          </tr>
+        </table>
+      </form>
+      </save>
+
+    <!-- 페이지 하단 -->
+    <div th:insert="~{./footer :: footer}"></div>
+  </div>
+</body>
+<script type="text/javascript">
+  const d = document;
+  const checkForm = () =>{
+	  if(d.frm.p_seno.value.trim()==""){
+		  alert("참가번호가 입력되지 않았습니다.");
+		  d.frm.p_seno.focus();
+		  return false;
+	  }
+	  
+	  alert("백신 접종 등록이 완료되었습니다.");
+	  return true;
+  }
+  const resetForm = () =>{
+	  alert("전체 내용을 지우고 다시 입력합니다.");
+	  d.frm.reset();
+	  d.frm.p_seno.focus();
+  }
+  </script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>백신 목록 조회</title>
+  <!-- css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <!-- favicon 오류해결: 공백 icon -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="main">
+    <!-- 페이지 상단 및 메뉴 -->
+    <div th:insert="~{./header :: header}"></div>
+
+    <section>
+      <h1>백신 목록 조회</h1>
+    </section>
+
+    <!-- 백신 목록 조회 -->
+		<table>
+			<tr>
+				<th>백신코드</th>
+				<th>백신명</th>
+				<th>접종 횟수</th>
+			</tr>
+			<tr th:each="i: ${injectionList}">
+				<td th:text="${i.i_code}"></td>
+				<td th:text="${i.i_name}"></td>
+				<td th:text="${i.i_cnt}"></td>
+			</tr>
+		</table>
+
+    <!-- 페이지 하단 -->
+    <div th:insert="~{./footer :: footer}"></div>
+  </div>
+</body>
+</html>

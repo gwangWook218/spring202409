@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapperOrder">
+
+    <insert id="save" parameterType="com.skc.dto.OrderDTO">
+        insert into 
+        	orderTBL(p_seno, i_code, p_no, p_date)
+        values
+        	(#{p_seno}, #{i_code}, #{p_no}, #{p_date})
+    </insert>
+    
+    <select id="findAll" resultType="com.skc.dto.OrderDTO">
+        SELECT 
+        	p_seno, c.p_no AS p_no, c.p_name AS p_name, 
+        	i.i_code AS i_code, i.i_name AS i_name, o.p_date AS p_date
+		FROM 
+			ordertbl o, custtbl c, injectiontbl i
+		WHERE 
+			o.p_no = c.p_no AND o.i_code = i.i_code
+    </select>
+    
+    <select id="findById" parameterType="Integer" resultType="com.skc.dto.OrderDTO">
+        SELECT 
+        	p_seno, c.p_no AS p_no, c.p_name AS p_name, 
+        	i.i_code AS i_code, i.i_name AS i_name, o.p_date AS p_date
+		FROM 
+			ordertbl o, custtbl c, injectiontbl i
+		WHERE 
+			p_seno=#{p_seno} AND o.p_no = c.p_no AND o.i_code = i.i_code
+    </select>
+    
+    <update id="update">
+        update 
+        	ordertbl o, custtbl c, injectiontbl i 
+		set
+			c.p_no=#{p_no}, c.p_name=#{p_name}, 
+			i.i_code=#{i_code}, i.i_name=#{i_name}, o.p_date=#{p_date}
+		WHERE 
+			p_seno=#{p_seno} AND o.p_no = c.p_no AND o.i_code = i.i_code
+    </update>
+    
+    <delete id="delete" parameterType="Integer">
+        delete from orderTBL 
+        where p_seno=#{p_seno}
+    </delete>
+
+</mapper>

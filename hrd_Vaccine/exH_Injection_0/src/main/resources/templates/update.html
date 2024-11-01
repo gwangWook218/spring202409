@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주사접종 목록 수정</title>
+  <!-- css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <!-- favicon 오류해결: 공백 icon -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="main">
+    <!-- 페이지 상단 및 메뉴 -->
+    <div th:insert="~{./header :: header}"></div>
+
+    <section>
+      <h1>참가자 정보 수정</h1>
+    </section>
+
+    <form th:action="@{|/update/${order.p_seno}|}" method="post" name="updateForm">
+      <!-- 참가번호 숨김: 값만 사용할 때 -->
+      <input type="hidden" name="p_seno" th:value="${order.p_seno}">
+      <table>
+        <tr>
+          <td>회원코드</td>
+          <td><input type="text" name="p_no" th:value="${order.p_no}"></td>
+        </tr>
+        <tr>
+          <td>회원이름</td>
+          <td><input type="text" name="p_name" th:value="${order.p_name}"></td>
+        </tr>
+        <tr>
+          <td>백신코드</td>
+          <td><input type="text" name="i_code" th:value="${order.i_code}"></td>
+        </tr>
+        <tr>
+          <td>백신명</td>
+          <td><input type="text" name="i_name" th:value="${order.i_name}"></td>
+        </tr>
+        <tr>
+          <td>접속날짜</td>
+          <td><input type="date" name="p_date" th:value="${order.p_date}"></td>
+        </tr>
+        <tr>
+          <td><input type="button" value="수정" onclick="submit()"></td>
+        </tr>
+      </table>
+    </form>
+
+    <!-- 페이지 하단 -->
+    <div th:insert="~{./footer :: footer}"></div>
+  </div>
+</body>
+</html>

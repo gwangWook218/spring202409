@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원 목록 조회</title>
+  <!-- css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <!-- favicon 오류해결: 공백 icon -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+  <div class="main">
+    <!-- 페이지 상단 및 메뉴 -->
+    <div th:insert="~{./header :: header}"></div>
+
+    <section>
+      <h1>회원 목록 조회</h1>
+    </section>
+
+    <!-- 회원 목록 조회 -->
+		<table>
+      <tr>
+        <th>회원코드</th>
+        <th>회원이름</th>
+        <th>생년월일</th>
+        <th>전화번호</th>
+        <th>도시</th>
+        <th>성별</th>
+      </tr>
+      <tr th:each="c: ${custList}">
+        <td th:text="${c.p_no}"></td>
+        <td th:text="${c.p_name}"></td>
+        <td th:text="${c.p_birth}"></td>
+        <td th:text="${c.p_tel}"></td>
+        <td th:text="${c.p_city}"></td>
+        <td th:text="${c.p_gender}"></td>
+      </tr>
+    </table>
+
+    <!-- 페이지 하단 -->
+    <div th:insert="~{./footer :: footer}"></div>
+  </div>
+</body>
+</html>

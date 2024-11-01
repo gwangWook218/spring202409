@@ -1,0 +1,23 @@
+<list>
+  <table>
+    <tr>
+      <th>접종받은코드</th>
+      <th>회원 코드</th>
+      <th>회원 이름</th>
+      <th>백신 코드</th>
+      <th>백신명</th>
+      <th>접종 날짜</th>
+    </tr>
+    <tr th:each="order: ${orderList}">
+      <td><a t:text="${order.p_seno}" th:href="@{|/${order.p_seno}|}"></a></td>
+      <td th:text="${order.p_no}"></td>
+      <td th:text="${order.p_name}"></td>
+      <td th:text="${order.i_code}"></td>
+      <td th:text="${order.i_name}"></td>
+      <td th:text="${order.p_date}"></td>
+      <td>
+        <button th:onclick="location.href = `/delete/[[${order.p_seno}]]`;" style="margin: 2px; padding: 2px;">삭제</button>
+      </td>
+    </tr>
+  </table>
+</list>
